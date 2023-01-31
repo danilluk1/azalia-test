@@ -10,7 +10,9 @@ const AdvertisingsList = ({ advertisings }: Props) => {
       <h1>Список сообщений</h1>
       <ul>
         {advertisings.map((advertising) => (
-          <li key={advertising.id}>{advertising.author}</li>
+          <li key={advertising.id}>
+            {advertising.author} {advertising.text}
+          </li>
         ))}
       </ul>
     </div>
