@@ -4,3 +4,9 @@ export type OperationDto = {
   previous_number: number;
   result: number;
 };
+
+export type AdvertisingDto = {
+  id: number;
+  text: string;
+  author: string;
+};

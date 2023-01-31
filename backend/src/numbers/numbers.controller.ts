@@ -7,6 +7,7 @@ import {
   ForbiddenException,
   Post,
   Get,
+  BadRequestException,
 } from '@nestjs/common';
 import { NewNumber, NewNumberResponse, OperationDto } from './dtos/dtos';
 import { NumbersService } from './numbers.service';
@@ -28,18 +29,20 @@ export class NumbersController {
       throw new ForbiddenException();
     }
 
+    if (isNaN(dto.number)) {
+      throw new BadRequestException('Number must be a number');
+    }
+
+    const num = +dto.number;
+
     let prevNumber: number = await this.cacheManager.get<number>(apiKey);
     if (!prevNumber) {
       prevNumber = 0;
     }
 
-    const res = await this.numbersService.addNewNumber(
-      apiKey,
-      dto.number,
-      prevNumber,
-    );
+    const res = await this.numbersService.addNewNumber(apiKey, num, prevNumber);
 
-    await this.cacheManager.set(apiKey, dto.number);
+    await this.cacheManager.set(apiKey, num);
 
     return res;
   }

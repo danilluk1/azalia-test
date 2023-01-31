@@ -24,22 +24,6 @@ import { Operation } from './db/entities/operation.entity';
         synchronize: true,
       }),
     }),
-    CacheModule.register({
-      store: redisStore.redisStore as any,
-      host: 'localhost',
-      port: 6379,
-      isGlobal: true,
-    }),
-    // CacheModule.registerAsync({
-    //   imports: [ConfigModule],
-    //   inject: [ConfigService],
-    //   useFactory: (configService: any) => ({
-    //     store: redisStore as any,
-    //     host: configService.get('REDIS_HOST'),
-    //     port: +configService.get('REDIS_PORT'),
-    //     isGlobal: true,
-    //   }),
-    // }),
     AdvertisingModule,
     NumbersModule,
   ],

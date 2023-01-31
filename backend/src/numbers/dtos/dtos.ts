@@ -1,6 +1,8 @@
 import { Type } from 'class-transformer';
+import { IsNumberString } from 'class-validator';
 
 export class NewNumber {
+  @IsNumberString()
   @Type(() => Number)
   number: number;
 }
