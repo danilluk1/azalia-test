@@ -1,6 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Advertising } from './db/entities/advertising.entity';
+import { AdvertisingModule } from './advertisings/advertisings.module';
+import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as redisStore from 'cache-manager-redis-store';
+import { Operation } from './db/entities/operation.entity';
 
 @Module({
   imports: [
@@ -15,10 +19,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.get('SQL_USER'),
         password: configService.get('SQL_PASSWORD'),
         database: configService.get('SQL_DATABASE'),
-        entities: [],
+        entities: [Advertising, Operation],
         synchronize: true,
       }),
     }),
+    CacheModule.register({
+      store: redisStore.redisStore as any,
+      url: 'localhost',
+      port: 6379,
+      isGlobal: true,
+    }),
+    AdvertisingModule,
   ],
   controllers: [],
   providers: [],

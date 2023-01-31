@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { AdvertisingsService } from './advertisings.service';
 import { AddAdvertisingDto, AdvertisingId } from './dtos/dtos';
 
@@ -15,5 +15,8 @@ export class AdvertisingsController {
   }
 
   @Get()
-  async;
+  @Render('index')
+  async renderMessages() {
+    return { message: 'Hello, World!' };
+  }
 }

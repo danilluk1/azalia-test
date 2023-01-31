@@ -16,5 +16,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+  redis:
+    restart: unless-stopped
+    image: redis/redis-stack:latest
+    networks:
+      - shgpu-table-dev
+    ports:
+      - 6379:6479
 volumes:
   postgres-data:
