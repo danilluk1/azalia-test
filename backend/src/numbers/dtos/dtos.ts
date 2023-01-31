@@ -3,8 +3,6 @@ import { Type } from 'class-transformer';
 export class NewNumber {
   @Type(() => Number)
   number: number;
-  // isNegative: boolean;
-  // isFraction: boolean;
 }
 
 export class NewNumberResponse {
@@ -13,9 +11,6 @@ export class NewNumberResponse {
   result: number;
 }
 
-export class OperationDto {
+export class OperationDto extends NewNumberResponse {
   id: string;
-  insertedNumber: number;
-  previousNumber: number;
-  result: number;
 }

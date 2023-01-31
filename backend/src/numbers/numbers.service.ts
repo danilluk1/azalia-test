@@ -1,4 +1,4 @@
-import { NewNumberResponse } from './dtos/dtos';
+import { NewNumberResponse, OperationDto } from './dtos/dtos';
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
@@ -25,12 +25,12 @@ export class NumbersService {
     };
   }
 
-  async getOperations(apiKey: string) {
+  async getOperations(apiKey: string): Promise<OperationDto[]> {
     const operations = await this.dataSource.query(
       `SELECT id, inserted_number, previous_number, result FROM operations WHERE api_key = $1;`,
       [apiKey],
     );
 
-    return operations;
+    return operations as OperationDto[];
   }
 }

@@ -54,6 +54,6 @@ export class NumbersController {
 
     const operations = await this.numbersService.getOperations(apiKey);
 
-    return operations;
+    return operations.reverse();
   }
 }
