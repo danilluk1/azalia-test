@@ -1,3 +1,4 @@
+import { NumbersModule } from './numbers/numbers.module';
 import { Advertising } from './db/entities/advertising.entity';
 import { AdvertisingModule } from './advertisings/advertisings.module';
 import { CacheModule, Module } from '@nestjs/common';
@@ -25,11 +26,22 @@ import { Operation } from './db/entities/operation.entity';
     }),
     CacheModule.register({
       store: redisStore.redisStore as any,
-      url: 'localhost',
+      host: 'localhost',
       port: 6379,
       isGlobal: true,
     }),
+    // CacheModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (configService: any) => ({
+    //     store: redisStore as any,
+    //     host: configService.get('REDIS_HOST'),
+    //     port: +configService.get('REDIS_PORT'),
+    //     isGlobal: true,
+    //   }),
+    // }),
     AdvertisingModule,
+    NumbersModule,
   ],
   controllers: [],
   providers: [],

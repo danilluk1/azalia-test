@@ -10,7 +10,7 @@ export class AdvertisingsController {
   async addMessage(
     @Body() addAdvDto: AddAdvertisingDto,
   ): Promise<AdvertisingId> {
-    const id = this.advertisingsService.addAdvertising(addAdvDto);
+    const id = await this.advertisingsService.addAdvertising(addAdvDto);
     return id;
   }
 

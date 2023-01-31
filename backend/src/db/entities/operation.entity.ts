@@ -11,21 +11,25 @@ export class Operation {
 
   @Column({
     nullable: false,
+    name: 'api_key',
   })
   apiKey: string;
 
   @Column({
     nullable: false,
+    name: 'inserted_number',
   })
   insertedNumber: string;
 
   @Column({
     nullable: false,
+    name: 'previous_number',
   })
   previousNumber: string;
 
   @Column({
     nullable: false,
+    name: 'result',
   })
   result: string;
 }

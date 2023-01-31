@@ -1,6 +1,21 @@
-export class NewNumber {
-  number: any;
+import { Type } from 'class-transformer';
 
-  isNegative: boolean;
-  isFraction: boolean;
+export class NewNumber {
+  @Type(() => Number)
+  number: number;
+  // isNegative: boolean;
+  // isFraction: boolean;
+}
+
+export class NewNumberResponse {
+  previousNumber: number;
+  currentNumber: number;
+  result: number;
+}
+
+export class OperationDto {
+  id: string;
+  insertedNumber: number;
+  previousNumber: number;
+  result: number;
 }
